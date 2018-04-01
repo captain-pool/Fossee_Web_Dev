@@ -1,0 +1,83 @@
+{% load static %}
+{%load mathfilters%}
+<html>
+<head>
+	<title> Assignment </title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<link rel="stylesheet" href={%static "css/style.css" %}>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+	<script src= {%static "script/mainscript.js" %}></script>
+</head>
+<div class="navbar-fixed">
+	<nav class='blue darken-2'> 
+		<div class='nav-wrapper lighten-2 valign-wrapper' style='margin:0% 2%; min-height:10%; max-height:25%;'>
+			<div style='color:white;height:100%;text-align: left;font-size:20px' valign='center'>FOSSEE Summer Fellowship Assignment, Spoken Tutorial Web Development</div>
+		</div> 
+	</nav>
+</div>
+<body>
+	<div style='margin:0% 2%'>
+		<div class="section">
+			<h5>Tally Submission Date</h5>
+			{% if dates %}
+			<div class="row">
+				<div class="col s6"><p>Expected Submission Date</p></div>
+				<div class="col s6"><p>Actual Submission Date</p></div>
+				<div class="divider"></div>
+				{% for obj in dates %}
+				<div class="row">
+					<div class="col s6">{{obj.actual_date|date:"d-m-Y"}}</div>
+					<div class="col s6">{{obj.expected_date|date:"d-m-Y"}}</div>
+				</div>
+				{% endfor %}
+			</div>
+			{% else %}
+			<h8> No Rows to Display </h8>
+			{% endif %}
+		</div>
+		<div class="divider"></div>
+		<div class="section">
+			<h5>Publisher Tutorials Count</h5>
+			{% if foss %}
+			<div class="row">
+				<div class="col s6">Publisher</div>
+				<div class="col s6">Publish Count</div>
+			</div>
+			{% for obj in foss %}
+			<div class="row">
+				<div class="col s6">{{ obj.publisher }}</div>
+				<div class="col s6">{{ obj.publishCount }}</div>
+			</div>
+			{% endfor %}
+			{%else%}
+			<h8> Rows to Display </h8>
+			{%endif%}
+		</div>
+		<div class="divider"></div>
+		<div class="section">
+			<h5>Total Payment Due</h5>
+			{%if foss%}
+			<div class="row">
+				<div class="col s4">Publisher</div>
+				<div class="col s4">Publish Count</div>
+				<div class="col s4"> =Total Payment [Rs.(Publish Count*1000)]</div>
+			</div>
+			
+			{%for obj in foss%}
+			<div class="row">
+				<div class="col s4">{{obj.publisher}}</div>
+				<div class="col s4">{{obj.publishCount}}</div>
+				<div class="col s4">{{ obj.publishCount|mul:1000 }}</div>
+			</div>
+			{%endfor%}
+			{%else%}
+			<h8>No Rows to Display</h8>
+			{%endif%}
+		</div>
+	</div>
+</body>
+<footer>
+	<div></div>
+</footer>
+</html>
