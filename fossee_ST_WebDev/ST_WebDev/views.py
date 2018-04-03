@@ -4,4 +4,5 @@ from ST_WebDev.models import user
 # Create your views here.
 def index(request):
     usr=user.objects.all()
+    #td=tutorial_detail.objects.filter()
     return render(request,'index.html',{'Name':'Adrish','usrlist':usr})
