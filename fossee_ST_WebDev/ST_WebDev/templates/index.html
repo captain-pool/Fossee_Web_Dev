@@ -82,11 +82,19 @@
 			post();
 		}
 	</script>
+	<style type='text/css'>
+		@media screen and (max-width: 393px)
+		{
+			#nav{
+				height:110px;
+			}
+		}
+	</style>
 </head>
 <div class="navbar-fixed">
-	<nav class='blue darken-2'> 
-		<div class='nav-wrapper lighten-2 valign-wrapper' style='margin:0% 2%; min-height:10%; max-height:25%;'>
-			<div style='color:white;height:100%;text-align: left;font-size:20px;' valign='center'>FOSSEE Summer Fellowship Assignment</div>
+	<nav class='blue darken-2' id="nav"> 
+		<div class='nav-wrapper lighten-2 valign-wrapper' style='margin:0% 2%;'>
+			<div style='color:white;height:100%;text-align: center;font-size:23px;' valign='center'>FOSSEE Summer Fellowship Assignment</div>
 		</div> 
 	</nav>
 </div>
@@ -107,7 +115,7 @@
 			</div>
 
 			<br><br><br>
-			<h5>Tally Submission Date</h5>
+			<h5>Tally Submission Date</h5><br>
 			<ul id="monthList" class='dropdown-content'>
 				<li><a href="#" onclick="getMonth(this)">1</a></li>
 				<li><a href="#" onclick="getMonth(this)">2</a></li>
@@ -173,7 +181,7 @@
 		</div>
 		<div class="divider"></div>
 		<div class="section">
-			<h5>Publisher Tutorials Count</h5>
+			<h5>Publisher Tutorials Count</h5><br>
 			{% if foss %}
 			<div class="row">
 				<div class="col s3"><b>Publisher</b></div>
@@ -191,7 +199,7 @@
 		</div>
 		<div class="divider"></div>
 		<div class="section">
-			<h5>Total Payment Due</h5>
+			<h5>Total Payment Due</h5><br>
 			{%if foss%}
 			<div class="row">
 				<div class="col s3"><b>Publisher</b></div>
