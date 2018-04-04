@@ -1,14 +1,10 @@
 {% load static %}
-<<<<<<< HEAD
 {%load mathfilters%}
-=======
->>>>>>> a07c4c0e65c8926ba0ffcb134468c1de6ae7c482
 <html>
 <head>
 	<title> Assignment </title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-<<<<<<< HEAD
 	<link rel="stylesheet" href={%static "css/style.css" %}>
 	<script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -36,16 +32,46 @@
 			}
 		}
 		var b=0;
-		var year=0,month=0;
+		var year=0,mnth=0;
+		function dismissErr()
+		{
+			$("#err").css('height','0')
+		}
+	function jsPost(path, parameters) 
+	{
+    	var form = $('#pl');
+
+    	form.attr("method", "post");
+    	form.attr("action", path);
+
+    	$.each(parameters, function(key, value) {
+	        var field = $('<input></input>');
+
+        	field.attr("type", "hidden");
+    	    field.attr("name", key);
+	        field.attr("value", value);
+
+        	form.append(field);
+    	});
+
+    	// The form needs to be a part of the document in
+    	// order for us to be able to submit it.
+    	$(document.body).append(form);
+    	form.submit();
+	}
 		function post()
 		{
-			$.post()
+			if(b==2)
+			{
+				b=0;
+				jsPost('/ST/',{'month':mnth,'yr':year});
+			}
 		}
 		function getMonth(obj)
 		{
 			$(monthDropDown).text(mapMonth(parseInt($(obj).text())));
 			b+=1;
-			month=parseInt($(obj).text());
+			mnth=parseInt($(obj).text());
 			post();
 		}
 		function getYear(obj)
@@ -65,16 +91,23 @@
 	</nav>
 </div>
 <body>
-
+	{% if err %}
+<div class="section" id="err" style='height: 10px'>
+	<div class="col s6" style="color:white;background-color:#e02c2c">There was an Error</div>
+	<div class="col s2"><a href="#" style="color:white;background-color:transparent;" onclick="dismissErr();">x</a></div>
+</div>
+{% endif %}
 	<div style='margin:0% 2%'>
 		<div class="section">
-			<h5>Tally Submission Date</h5>
-			<p id="postLink"></p>
 			<div>
-				<div style='float:left;margin-right: 5px;'><a href="#" id="monthDropDown" class="btn dropdown-trigger" data-target="monthList">Month</a></div>
+				<h5>Select Month/Year to Continue</h5>
+				<div style='float:left;margin-right: 5px;'><a href="#" id="monthDropDown" class="btn dropdown-trigger" data-target="monthList"> {%if month %} {{ month }} {%else%} Month {%endif%}</a></div>
 
-				<div style="float:left; margin-left: 5px;"><a href="#" id="yearDropDown" class="btn dropdown-trigger" data-target="yearList">Year</a></div>
+				<div style="float:left; margin-left: 5px;"><a href="#" id="yearDropDown" class="btn dropdown-trigger" data-target="yearList">{%if year %} {{ year }} {%else%} Year {%endif%}</a></div>
 			</div>
+
+			<br><br><br>
+			<h5>Tally Submission Date</h5>
 			<ul id="monthList" class='dropdown-content'>
 				<li><a href="#" onclick="getMonth(this)">1</a></li>
 				<li><a href="#" onclick="getMonth(this)">2</a></li>
@@ -118,35 +151,38 @@
 				<li><a href="#" onclick="getYear(this)">2025</a></li>
 			</ul>
 
-			<br><br><br>
+			<br>
+			<div>
 			{% if dates %}
 			<div class="row">
-				<div class="col s6"><p>Expected Submission Date</p></div>
-				<div class="col s6"><p>Actual Submission Date</p></div>
-				<div class="divider"></div>
+				<div class="col s3"><b>Course Name</b></div>
+				<div class="col s3"><b>Expected Submission Date</b></div>
+				<div class="col s3"><b>Actual Submission Date</b></div>
+			</div>
 				{% for obj in dates %}
 				<div class="row">
-					<div class="col s6">{{obj.actual_date|date:"d-m-Y"}}</div>
-					<div class="col s6">{{obj.expected_date|date:"d-m-Y"}}</div>
+					<div class="col s3">{{obj.courseName}}</div>
+					<div class="col s3">{{obj.actual_date|date:"d-m-Y"}}</div>
+					<div class="col s3">{{obj.expected_date|date:"d-m-Y"}}</div>
 				</div>
 				{% endfor %}
-			</div>
 			{% else %}
 			<h8> No Rows to Display </h8>
 			{% endif %}
+		</div>
 		</div>
 		<div class="divider"></div>
 		<div class="section">
 			<h5>Publisher Tutorials Count</h5>
 			{% if foss %}
 			<div class="row">
-				<div class="col s6">Publisher</div>
-				<div class="col s6">Publish Count</div>
+				<div class="col s3"><b>Publisher</b></div>
+				<div class="col s3"><b>Publish Count</b></div>
 			</div>
 			{% for obj in foss %}
 			<div class="row">
-				<div class="col s6">{{ obj.publisher }}</div>
-				<div class="col s6">{{ obj.publishCount }}</div>
+				<div class="col s3">{{ obj.publisher }}</div>
+				<div class="col s3">{{ obj.publishCount }}</div>
 			</div>
 			{% endfor %}
 			{%else%}
@@ -158,35 +194,26 @@
 			<h5>Total Payment Due</h5>
 			{%if foss%}
 			<div class="row">
-				<div class="col s4">Publisher</div>
-				<div class="col s4">Publish Count</div>
-				<div class="col s4"> =Total Payment [Rs.(Publish Count*1000)]</div>
+				<div class="col s3"><b>Publisher</b></div>
+				<div class="col s3"><b>Publish Count</b></div>
+				<div class="col s3"> <b>=Total Payment [Rs.(Publish Count*1000)]</b></div>
 			</div>
 			
 			{%for obj in foss%}
 			<div class="row">
-				<div class="col s4">{{obj.publisher}}</div>
-				<div class="col s4">{{obj.publishCount}}</div>
-				<div class="col s4">{{ obj.publishCount|mul:1000 }}</div>
+				<div class="col s3">{{obj.publisher}}</div>
+				<div class="col s3">{{obj.publishCount}}</div>
+				<div class="col s3">{{ obj.publishCount|mul:1000 }}</div>
 			</div>
 			{%endfor%}
 			{%else%}
 			<h8>No Rows to Display</h8>
 			{%endif%}
 		</div>
-=======
-	<link rel="stylesheet" href={%static%}"css/style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-	<script src={%static%}"script/mainscript.js"></script>
-</head>
-<header> <ul style='float:left;display:inline-block;'><li>FOSSEE Summer Fellowship Assignment, Spoken Tutorial Web Development</li></ul> </header>
-<body>
-	<div>
-		
->>>>>>> a07c4c0e65c8926ba0ffcb134468c1de6ae7c482
 	</div>
+	<form id="pl">{%csrf_token%}</form>
 </body>
-<footer>
-	<div></div>
+<footer style="height:40%;">
+	<div style="color:White;"></div>
 </footer>
 </html>
