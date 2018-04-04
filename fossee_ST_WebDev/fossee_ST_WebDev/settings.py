@@ -25,7 +25,7 @@ PASS=os.environ['FOSS_PWD']
 SECRET_KEY = 'x-kjuae7wt+6l2%apk_7mw^p1-yen27%4y=o$_-bl7w12x@w-8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

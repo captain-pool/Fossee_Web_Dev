@@ -98,15 +98,17 @@
 </div>
 <body>
 	{% if err %}
-
+	<script>
+		M.toast({html:'Oops! Some Error Occurred.'});
+	</script>
 {% endif %}
 	<div style='margin:0% 2%'>
 		<div class="section">
 			<div>
 				<h5>Select Month - Year </h5>
-				<div style='float:left;margin-right: 5px;'><a href="#" id="monthDropDown" class="btn dropdown-trigger" data-target="monthList"> {%if month %} {{ month }} {%else%} Month {%endif%}</a></div>
+				<div style='float:left;margin-right: 5px;'><a href="#" id="monthDropDown" class="btn dropdown-trigger" style='background-color: #0056e2' data-target="monthList"> {%if month %} {{ month }} {%else%} Month {%endif%}</a></div>
 
-				<div style="float:left; margin-left: 5px;"><a href="#" id="yearDropDown" class="btn dropdown-trigger" data-target="yearList">{%if year %} {{ year }} {%else%} Year {%endif%}</a></div>
+				<div style="float:left; margin-left: 5px;"><a href="#" id="yearDropDown" style='background-color: #0056e2' class="btn dropdown-trigger" data-target="yearList">{%if year %} {{ year }} {%else%} Year {%endif%}</a></div>
 			</div>
 
 			<br><br><br>
@@ -176,7 +178,7 @@
 		</div>
 		<div class="divider"></div>
 		<div class="section">
-			<h5>Publisher Tutorials Count</h5><br>
+			<h5>Number of Published Tutorials</h5><br>
 			{% if foss %}
 			<div class="row">
 				<div class="col s3"><b>Publisher</b></div>
@@ -189,7 +191,7 @@
 			</div>
 			{% endfor %}
 			{%else%}
-			<h8> Rows to Display </h8>
+			<h8> No Rows to Display </h8>
 			{%endif%}
 		</div>
 		<div class="divider"></div>
