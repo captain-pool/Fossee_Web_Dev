@@ -10,6 +10,7 @@ def index(request):
 	if request.method=='POST':
 		dates=[]
 		try:
+			raise KeyError()
 			month=request.POST['month']
 			year=request.POST['yr']
 			tutorial=tutorial_detail.objects.filter(expected_submission_date__year=year,expected_submission_date__month=month)
@@ -19,7 +20,7 @@ def index(request):
 				obj['actual_date']=o.actual_submission_date
 				obj['expected_date']=o.expected_submission_date
 				dates.append(obj)
-			contrib=tutorial_detail.objects.values('contributor').annotate(count=Count('contributor'))
+			contrib=tutorial_detail.objects.filter(expected_submission_date__year=year,expected_submission_date__month=month).values('contributor').annotate(count=Count('contributor'))
 			foss=[{'publisher':user.objects.filter(pk=x['contributor'])[0].name,'publishCount':x['count']} for x in contrib]
 			return render(request,'index.html',{'dates':dates,'foss':foss,'month':mapmonth[int(month)],'year':year})
 		except KeyError:

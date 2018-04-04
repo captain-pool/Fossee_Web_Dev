@@ -5,7 +5,6 @@
 	<title> Assignment </title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-	<link rel="stylesheet" href={%static "css/style.css" %}>
 	<script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -31,7 +30,7 @@
 				case 12: return "December";
 			}
 		}
-		var b=0;
+		var b="";
 		var year=0,mnth=0;
 		function dismissErr()
 		{
@@ -61,29 +60,29 @@
 	}
 		function post()
 		{
-			if(b==2)
+			if((b.indexOf("12")!=-1)||(b.indexOf("21")!=-1))
 			{
-				b=0;
-				jsPost('/ST/',{'month':mnth,'yr':year});
+				b="";
+				jsPost('/',{'month':mnth,'yr':year});
 			}
 		}
 		function getMonth(obj)
 		{
 			$(monthDropDown).text(mapMonth(parseInt($(obj).text())));
-			b+=1;
+			b+="1";
 			mnth=parseInt($(obj).text());
 			post();
 		}
 		function getYear(obj)
 		{
 			$(yearDropDown).text($(obj).text());
-			b+=1;
+			b+="2";
 			year=parseInt($(obj).text());
 			post();
 		}
 	</script>
 	<style type='text/css'>
-		@media screen and (max-width: 393px)
+		@media screen and (max-width: 450px)
 		{
 			#nav{
 				height:110px;
@@ -91,7 +90,7 @@
 		}
 	</style>
 </head>
-<div class="navbar-fixed">
+<div class="navbar">
 	<nav class='blue darken-2' id="nav"> 
 		<div class='nav-wrapper lighten-2 valign-wrapper' style='margin:0% 2%;'>
 			<div style='color:white;height:100%;text-align: center;font-size:23px;' valign='center'>FOSSEE Summer Fellowship Assignment</div>
@@ -100,15 +99,12 @@
 </div>
 <body>
 	{% if err %}
-<div class="section" id="err" style='height: 10px'>
-	<div class="col s6" style="color:white;background-color:#e02c2c">There was an Error</div>
-	<div class="col s2"><a href="#" style="color:white;background-color:transparent;" onclick="dismissErr();">x</a></div>
-</div>
+
 {% endif %}
 	<div style='margin:0% 2%'>
 		<div class="section">
 			<div>
-				<h5>Select Month/Year to Continue</h5>
+				<h5>Select Month - Year </h5>
 				<div style='float:left;margin-right: 5px;'><a href="#" id="monthDropDown" class="btn dropdown-trigger" data-target="monthList"> {%if month %} {{ month }} {%else%} Month {%endif%}</a></div>
 
 				<div style="float:left; margin-left: 5px;"><a href="#" id="yearDropDown" class="btn dropdown-trigger" data-target="yearList">{%if year %} {{ year }} {%else%} Year {%endif%}</a></div>

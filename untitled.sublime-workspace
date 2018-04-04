@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"max",
+				"max-width"
+			],
+			[
+				"t",
+				"tutorial"
+			],
+			[
+				"reu",
+				"request"
+			],
+			[
+				"tut",
+				"tutorial"
+			],
+			[
+				"tu",
+				"tutorial_detail"
+			],
+			[
 				"margin",
 				"margin-right"
 			],
@@ -53,22 +73,31 @@
 			}
 		},
 		{
-			"contents": "from django.shortcuts import render\nfrom ST_WebDev.models import user,foss,tutorial_detail,payment\n# Create your views here.\ndef index(request):\n\tif request.method=='GET':\n\t\treturn render(request,'index.html',{})\n\tif request.method=='POST':\n\t\ttry:\n\t\t\tmonth=request.POST['month']\n\t\t\tyear=request.POST['yr']\n\t\t\t\n\n    #td=tutorial_detail.objects.filter()\n",
-			"file": "fossee_ST_WebDev/ST_WebDev/views.py",
-			"file_size": 293,
-			"file_write_time": 131672342323357824,
+			"file": "fossee_ST_WebDev/ST_WebDev/templates/index.html",
 			"settings":
 			{
-				"buffer_size": 352,
+				"buffer_size": 7214,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "fossee_ST_WebDev/ST_WebDev/templates/index.html",
+			"contents": "",
+			"file": "fossee_ST_WebDev/ST_WebDev/templates/404.html",
+			"file_size": 0,
+			"file_write_time": 131673126149004934,
 			"settings":
 			{
-				"buffer_size": 6363,
+				"buffer_size": 0,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "fossee_ST_WebDev/ST_WebDev/views.py",
+			"settings":
+			{
+				"buffer_size": 1297,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -120,7 +149,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -134,6 +163,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"objects",
+			"divider",
+			"tutorial",
+			"csrf",
 			"HttpResponse"
 		],
 		"highlight": true,
@@ -152,7 +185,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -210,30 +243,89 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 2,
-					"file": "fossee_ST_WebDev/ST_WebDev/views.py",
+					"file": "fossee_ST_WebDev/ST_WebDev/templates/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 352,
+						"buffer_size": 7214,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								309,
-								309
+								2667,
+								2667
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1215.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "fossee_ST_WebDev/ST_WebDev/templates/404.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "fossee_ST_WebDev/ST_WebDev/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1297,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								460,
+								460
 							]
 						],
 						"settings":
@@ -244,36 +336,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "fossee_ST_WebDev/ST_WebDev/templates/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6363,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4811,
-								4811
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2610.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -307,7 +370,7 @@
 		"cols":
 		[
 			0.0,
-			0.548274744563,
+			0.726872246696,
 			1.0
 		],
 		"rows":
