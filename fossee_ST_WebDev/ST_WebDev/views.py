@@ -10,7 +10,6 @@ def index(request):
 	if request.method=='POST':
 		dates=[]
 		try:
-			raise KeyError()
 			month=request.POST['month']
 			year=request.POST['yr']
 			tutorial=tutorial_detail.objects.filter(expected_submission_date__year=year,expected_submission_date__month=month)

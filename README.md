@@ -1,5 +1,5 @@
-## Fossee project by IIT
+<h1>FOSSEE Summer Fellowship Assignment</h1><br>
 
-Spoken Tutorial Web Development
+<h2>Topic : Spoken Tutorial Project Web Development Work</h2><br><br>
 
-Website-: [https://courses.fossee.in/course/view.php?id=7](Dashboard)
+<p>It is a web development project to find the details about the courses.</p>
