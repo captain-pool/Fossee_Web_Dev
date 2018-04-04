@@ -12,14 +12,14 @@ def index(request):
 		try:
 			month=request.POST['month']
 			year=request.POST['yr']
-			tutorial=tutorial_detail.objects.filter(expected_submission_date__year=year,expected_submission_date__month=month)
+			tutorial=tutorial_detail.objects.filter(actual_submission_date__year=year,actual_submission_date__month=month)
 			for o in tutorial:
 				obj={}
 				obj['courseName']=o.tutorial_name
 				obj['actual_date']=o.actual_submission_date
 				obj['expected_date']=o.expected_submission_date
 				dates.append(obj)
-			contrib=tutorial_detail.objects.filter(expected_submission_date__year=year,expected_submission_date__month=month).values('contributor').annotate(count=Count('contributor'))
+			contrib=tutorial_detail.objects.filter(actual_submission_date__year=year,actual_submission_date__month=month).values('contributor').annotate(count=Count('contributor'))
 			foss=[{'publisher':user.objects.filter(pk=x['contributor'])[0].name,'publishCount':x['count']} for x in contrib]
 			return render(request,'index.html',{'dates':dates,'foss':foss,'month':mapmonth[int(month)],'year':year})
 		except KeyError:
