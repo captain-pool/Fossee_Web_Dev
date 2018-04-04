@@ -1,12 +1,12 @@
-#FOSSEE Summer Fellowship Assignment
+# FOSSEE Summer Fellowship Assignment
 
-##Topic : Spoken Tutorial Project Web Development Work
+## Topic : Spoken Tutorial Project Web Development Work
 Python Version-: 3.5
 Packages used:
 * Django 2.0.3  ``` pip install django```
 * mathfilters   ```pip install mathfilters```
 
-##Database Required
+## Database Required
 * DB Name ```Fossee```
 * DB Username -: export the username as an environment variable of name "FOSS_UNAME"
 	* Linux/UNIX Users
@@ -28,7 +28,7 @@ Packages used:
 		SET FOSS_PWD=<your_password>
 		```
 
-#Database Setup
+# Database Setup
 * Linux/UNIX Users with Python 3 installed
 	```
 	python3 manage.py makemigrations
@@ -39,7 +39,7 @@ Packages used:
 	python manage.py makemigrations
 	python manage.py migrate
 	```
-#Creating Admin Account
+# Creating Admin Account
 * Linux/UNIX Users with Python 3 installed
 	```
 	python3 manage.py createsuperuser
@@ -51,7 +51,7 @@ Packages used:
 
 **All the Data of the database is entered through the Django Admin Account**
 
-#Run the Project:
+# Run the Project:
 * Linux/UNIX Users with Python 3 installed
 	```
 	python3 manage.py runserver
