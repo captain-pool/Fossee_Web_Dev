@@ -161,12 +161,14 @@
 			{% if dates %}
 			<div class="row">
 				<div class="col s3"><b>Course Name</b></div>
+				<div class ="col s3"><b>Foss</b></div>
 				<div class="col s3"><b>Expected Submission Date</b></div>
 				<div class="col s3"><b>Actual Submission Date</b></div>
 			</div>
 				{% for obj in dates %}
 				<div class="row">
 					<div class="col s3">{{obj.courseName}}</div>
+					<div class="col s3">{{obj.foss}}</div>
 					<div class="col s3">{{obj.actual_date|date:"d-m-Y"}}</div>
 					<div class="col s3">{{obj.expected_date|date:"d-m-Y"}}</div>
 				</div>

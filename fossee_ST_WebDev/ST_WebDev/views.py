@@ -15,6 +15,7 @@ def index(request):
 			tutorial=tutorial_detail.objects.filter(actual_submission_date__year=year,actual_submission_date__month=month)
 			for o in tutorial:
 				obj={}
+				obj['foss']=o.foss.name
 				obj['courseName']=o.tutorial_name
 				obj['actual_date']=o.actual_submission_date
 				obj['expected_date']=o.expected_submission_date
